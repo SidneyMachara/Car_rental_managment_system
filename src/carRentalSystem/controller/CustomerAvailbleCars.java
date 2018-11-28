@@ -79,7 +79,7 @@ public class CustomerAvailbleCars extends Scene_Changer implements Initializable
         //select first item
         carListView.getSelectionModel().selectFirst();
         carName.setText(carListView.getSelectionModel().getSelectedItem().getName());
-        Price_value.setText("Pula "+carListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
+        Price_value.setText("Rmb "+carListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
         Stauts_value.setText(carListView.getSelectionModel().getSelectedItem().getStatus());
         currentlySelectedCar = carListView.getSelectionModel().getSelectedItem().getCar_id();
         image = carListView.getSelectionModel().getSelectedItem().getImage();
@@ -145,7 +145,7 @@ public class CustomerAvailbleCars extends Scene_Changer implements Initializable
         }
 
        carName.setText(carListView.getSelectionModel().getSelectedItem().getName());
-       Price_value.setText("Pula "+carListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
+       Price_value.setText("Rmb "+carListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
         Stauts_value.setText(carListView.getSelectionModel().getSelectedItem().getStatus());
         currentlySelectedCar = carListView.getSelectionModel().getSelectedItem().getCar_id();
         image = carListView.getSelectionModel().getSelectedItem().getImage();

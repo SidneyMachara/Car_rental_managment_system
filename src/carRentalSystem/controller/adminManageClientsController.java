@@ -64,7 +64,7 @@ public class adminManageClientsController extends Scene_Changer implements Initi
 
         //select first client
         clientsListView.getSelectionModel().selectFirst();
-        borrwored_car =  connect.getBorrowedCarForAdmin(clientsListView.getSelectionModel().getSelectedItem().getEmail());
+        borrwored_car =  connect.getBorrowedCarForAdmin(clientsListView.getSelectionModel().getSelectedItem().getId());
         Name.setText(clientsListView.getSelectionModel().getSelectedItem().getName());
         omang.setText(clientsListView.getSelectionModel().getSelectedItem().getOmang());
         email.setText(clientsListView.getSelectionModel().getSelectedItem().getEmail());
@@ -76,7 +76,7 @@ public class adminManageClientsController extends Scene_Changer implements Initi
         try {
             borrwored_car.beforeFirst();
             if(!borrwored_car.isBeforeFirst()){
-                System.out.println("clienr has no borrwed car "+clientsListView.getSelectionModel().getSelectedItem().getEmail());
+                System.out.println("clienr has no borrwed car "+clientsListView.getSelectionModel().getSelectedItem().getId());
                 car_name.setText("HAS NOT BORROWED ANY CAR NOW");
                 car_image.setImage(null);
 
@@ -121,7 +121,7 @@ public class adminManageClientsController extends Scene_Changer implements Initi
                     num_days = 1;
                 }
                 double cumulative_cost = borrwored_car.getDouble("price") * num_days;
-                cost.setText("Pula "+cumulative_cost+"0");
+                cost.setText("Rmb "+cumulative_cost+"0");
 
                 //overdue costs
 //
@@ -132,11 +132,11 @@ public class adminManageClientsController extends Scene_Changer implements Initi
                 if(num_overdue_days <= 0){
 //                    total cost remains that same
                     OverdueL.setText("0");
-                    pula_total_cost.setText("Pula "+cumulative_cost+"0");
+                    pula_total_cost.setText("Rmb "+cumulative_cost+"0");
                 }else {
                     OverdueL.setText(num_overdue_days+"");
                     double pluse_overdue_cost = cumulative_cost + (borrwored_car.getDouble("price") * num_overdue_days);
-                    pula_total_cost.setText("Pula "+pluse_overdue_cost+"0");
+                    pula_total_cost.setText("Rmb "+pluse_overdue_cost+"0");
 
                 }
 
@@ -177,12 +177,12 @@ public class adminManageClientsController extends Scene_Changer implements Initi
 
 
 //    display details of car borrowed by client
-        borrwored_car =  connect.getBorrowedCarForAdmin(clientsListView.getSelectionModel().getSelectedItem().getEmail());
+        borrwored_car =  connect.getBorrowedCarForAdmin(clientsListView.getSelectionModel().getSelectedItem().getId());
 
         try {
             borrwored_car.beforeFirst();
             if(!borrwored_car.isBeforeFirst()){
-                System.out.println("clienr has no borrwed car "+clientsListView.getSelectionModel().getSelectedItem().getEmail());
+                System.out.println("clienr has no borrwed car "+clientsListView.getSelectionModel().getSelectedItem().getId());
                 car_name.setText("HAS NOT BORROWED ANY CAR NOW");
                 car_image.setImage(null);
 
@@ -229,7 +229,7 @@ public class adminManageClientsController extends Scene_Changer implements Initi
                     num_days = 1;
                 }
                 double cumulative_cost = borrwored_car.getDouble("price") * num_days;
-                cost.setText("Pula "+cumulative_cost+"0");
+                cost.setText("Rmb "+cumulative_cost+"0");
 
                 //overdue costs
 //
@@ -240,11 +240,11 @@ public class adminManageClientsController extends Scene_Changer implements Initi
                 if(num_overdue_days <= 0){
 //                    total cost remains that same
                     OverdueL.setText("0");
-                    pula_total_cost.setText("Pula "+cumulative_cost+"0");
+                    pula_total_cost.setText("Rmb "+cumulative_cost+"0");
                 }else {
                     OverdueL.setText(num_overdue_days+"");
                     double pluse_overdue_cost = cumulative_cost + (borrwored_car.getDouble("price") * num_overdue_days);
-                    pula_total_cost.setText("Pula "+pluse_overdue_cost+"0");
+                    pula_total_cost.setText("Rmb "+pluse_overdue_cost+"0");
 
                 }
 
@@ -262,7 +262,7 @@ public class adminManageClientsController extends Scene_Changer implements Initi
         if(borrwored_car != null) {
             connect.returnCar(b_car_id);
 
-            System.out.println("car returned " + clientsListView.getSelectionModel().getSelectedItem().getEmail());
+            System.out.println("car returned " + clientsListView.getSelectionModel().getSelectedItem().getId());
             car_name.setText("HAS NOT BORROWED ANY CAR NOW");
             car_image.setImage(null);
 

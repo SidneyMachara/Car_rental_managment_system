@@ -96,11 +96,11 @@ public class CustomerBookedCarController extends Scene_Changer implements Initia
                 if(num_overdue_days <= 0){
 //                    total cost remains that same
                     OverdueL.setText("0");
-                    pula_total_cost.setText("Pula "+cumulative_cost+"0");
+                    pula_total_cost.setText("Rmb "+cumulative_cost+"0");
                 }else {
                     OverdueL.setText(num_overdue_days+"");
                     double pluse_overdue_cost = cumulative_cost + (rs.getDouble("price") * num_overdue_days);
-                    pula_total_cost.setText("Pula "+pluse_overdue_cost+"0");
+                    pula_total_cost.setText("Rmb "+pluse_overdue_cost+"0");
 
                 }
 
@@ -109,7 +109,7 @@ public class CustomerBookedCarController extends Scene_Changer implements Initia
 
 //            update display values
                 car_name.setText(rs.getString("car_name"));
-                total_cost_value.setText("Pula " + cumulative_cost + "0");
+                total_cost_value.setText("Rmb " + cumulative_cost + "0");
                 take_car_date.setText(rs.getString("book_from"));
                 return_car_date.setText(rs.getString("book_until"));
 

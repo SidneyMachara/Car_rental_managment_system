@@ -70,7 +70,7 @@ public class adminManageCarController extends Scene_Changer implements Initializ
         //select first item
          adminCarsListView.getSelectionModel().selectFirst();
          carName.setText(adminCarsListView.getSelectionModel().getSelectedItem().getName());
-        Price_value.setText("Pula "+adminCarsListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
+        Price_value.setText("Rmb "+adminCarsListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
         Stauts_value.setText(adminCarsListView.getSelectionModel().getSelectedItem().getStatus());
         currentlySelectedCar = adminCarsListView.getSelectionModel().getSelectedItem().getCar_id();
         image = adminCarsListView.getSelectionModel().getSelectedItem().getImage();
@@ -106,7 +106,7 @@ public class adminManageCarController extends Scene_Changer implements Initializ
     @FXML public void handleMouseClick(MouseEvent arg0) {
 
         carName.setText(adminCarsListView.getSelectionModel().getSelectedItem().getName());
-        Price_value.setText("Pula "+adminCarsListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
+        Price_value.setText("Rmb "+adminCarsListView.getSelectionModel().getSelectedItem().getPrice() + " per day");
         Stauts_value.setText(adminCarsListView.getSelectionModel().getSelectedItem().getStatus());
         currentlySelectedCar = adminCarsListView.getSelectionModel().getSelectedItem().getCar_id();
         image = adminCarsListView.getSelectionModel().getSelectedItem().getImage();

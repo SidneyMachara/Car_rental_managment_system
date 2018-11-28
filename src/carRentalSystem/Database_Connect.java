@@ -115,7 +115,7 @@ public class Database_Connect {
         rs.beforeFirst();
         if(rs.next()){
             if (password_hashed.equals(rs.getString("password")) ) {
-                user = new RegisteredUser(rs.getString("name"), rs.getString("email"), rs.getString("omang"), password_hashed);
+                user = new RegisteredUser(rs.getInt("customer_id"), rs.getString("name"), rs.getString("email"), rs.getString("omang"), password_hashed);
                 Main.currentUser = user;
                 return user;
             }
@@ -218,7 +218,7 @@ public class Database_Connect {
         try{
             rs.beforeFirst();
             while(rs.next()){
-                clients.add(new RegisteredUser(rs.getString("name"), rs.getString("email"), rs.getString("omang"), rs.getString("password")));
+                clients.add(new RegisteredUser(rs.getInt("customer_id"),rs.getString("name"), rs.getString("email"), rs.getString("omang"), rs.getString("password")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -233,7 +233,7 @@ public class Database_Connect {
      * @return an observable list of buses of type Bus
      */
     public ResultSet getBookedCarsFromDB(){
-        String sql = "SELECT * FROM booked WHERE customer = \""+Main.currentUser.getEmail()+"\"";
+        String sql = "SELECT * FROM booked WHERE customer = \""+Main.currentUser.getId()+"\"";
         ResultSet rs = executeStmt(sql);
         return rs;
     }
@@ -246,7 +246,7 @@ public class Database_Connect {
      */
     public void bookCar(int car_id ,String car_name,double price, LocalDate start_date, LocalDate return_date,String image){
         String sql = "INSERT INTO booked ( car_id , car_name, price, customer,book_from, book_until, image) " +
-                "VALUES (\""+car_id+"\", \""+car_name+"\", \""+price+"\", \""+Main.currentUser.getEmail()+"\" , \""+start_date+"\" , \""+return_date+"\", \""+image+"\")";
+                "VALUES (\""+car_id+"\", \""+car_name+"\", \""+price+"\", \""+Main.currentUser.getId()+"\" , \""+start_date+"\" , \""+return_date+"\", \""+image+"\")";
 
         insertStmt(sql);
 //        update car status in database to booked
@@ -300,7 +300,7 @@ public class Database_Connect {
     }
 
     public boolean alreadyBooked()throws SQLException{
-        String sql = "SELECT * FROM booked WHERE customer = \""+Main.currentUser.getEmail()+"\"";
+        String sql = "SELECT * FROM booked WHERE customer = \""+Main.currentUser.getId()+"\"";
         ResultSet rs = executeStmt(sql);
         rs.beforeFirst();
         if(!rs.isBeforeFirst()){
@@ -323,9 +323,9 @@ public class Database_Connect {
         }
     }
 
-    public ResultSet getBorrowedCarForAdmin(String user_email){
+    public ResultSet getBorrowedCarForAdmin(int user_id){
         Statement stmt = null;
-        String sql = "SELECT * FROM booked WHERE customer = \""+user_email+"\"";
+        String sql = "SELECT * FROM booked WHERE customer = \""+user_id+"\"";
         ResultSet rs = executeStmt(sql);
 
         return rs;
@@ -351,6 +351,67 @@ public class Database_Connect {
             }
             return sb.toString();
 
+
+    }
+
+    public void createTables(){
+
+
+        String sql = "CREATE TABLE IF NOT EXISTS `admin_table` " +
+                "(  `admin_id` int(11) NOT NULL AUTO_INCREMENT," +
+                "`email` varchar(60) NOT NULL," +
+                "  `username` varchar(25) NOT NULL," +
+                "  `password` varchar(60) NOT NULL," +
+                "        PRIMARY KEY (`admin_id`)" +
+                ")";
+        insertStmt(sql);
+
+
+         sql = "INSERT INTO `admin_table` (`admin_id`, `email`, `username`, `password`) VALUES" +
+                " (1, 'admin', 'admin', '25f9e794323b453885f5181f1b624db')";
+        insertStmt(sql);
+
+
+
+         sql = "CREATE TABLE IF NOT EXISTS `car_table` (" +
+                "  `car_id` int(11) NOT NULL AUTO_INCREMENT," +
+                "  `car_name` varchar(30) NOT NULL," +
+                "  `car_model` varchar(30) NOT NULL," +
+                "  `status` varchar(25) NOT NULL," +
+                "  `price` double NOT NULL," +
+                "  `image` blob NOT NULL," +
+                "                PRIMARY KEY (`car_id`)" +
+                ")";
+        insertStmt(sql);
+
+
+         sql = "CREATE TABLE IF NOT EXISTS `customer_table` (" +
+                "  `customer_id` int(11) NOT NULL AUTO_INCREMENT," +
+                "  `name` varchar(25) NOT NULL," +
+                "  `surname` varchar(25) NOT NULL," +
+                "  `omang` varchar(25) NOT NULL," +
+                "  `email` varchar(60) NOT NULL," +
+                "  `password` varchar(60) NOT NULL," +
+                "        PRIMARY KEY (`customer_id`)" +
+                ")";
+        insertStmt(sql);
+
+
+         sql = "CREATE TABLE IF NOT EXISTS `booked` " +
+                "(  `id` int(11) NOT NULL AUTO_INCREMENT," +
+                "  `car_id` int(11) NOT NULL," +
+                "  `car_name` varchar(30) NOT NULL," +
+                "  `price` double NOT NULL," +
+                "  `customer` int(11) NOT NULL," +
+                "  `book_from` date DEFAULT NULL," +
+                "  `book_until` date DEFAULT NULL," +
+                "  `image` blob NOT NULL," +
+                "                PRIMARY KEY (`id`)," +
+                "FOREIGN KEY (`car_id`) REFERENCES car_table(`car_id`)," +
+                "FOREIGN KEY (`customer`) REFERENCES customer_table(`customer_id`)" +
+                ")";
+
+        insertStmt(sql);
 
     }
 

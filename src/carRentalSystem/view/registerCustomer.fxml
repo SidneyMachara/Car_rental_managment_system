@@ -12,7 +12,7 @@
       <TextField fx:id="nameF" layoutX="31.0" layoutY="122.0" promptText="Name" />
       <TextField fx:id="surnameF" layoutX="31.0" layoutY="175.0" promptText="Surname" />
       <TextField fx:id="emailF" layoutX="31.0" layoutY="223.0" promptText="email" />
-      <TextField fx:id="national_id" layoutX="242.0" layoutY="122.0" promptText="Omang" />
+      <TextField fx:id="national_id" layoutX="242.0" layoutY="122.0" promptText="Passport Number" />
       <PasswordField fx:id="password" layoutX="242.0" layoutY="175.0" promptText="Password" />
       <PasswordField fx:id="Confirm_password" layoutX="242.0" layoutY="223.0" promptText="Confirm Password" />
       <Button layoutX="27.0" layoutY="273.0" mnemonicParsing="false" onAction="#register_btn" prefHeight="41.0" prefWidth="367.0" style="-fx-background-color: lightblue;" text="Register" />
@@ -32,7 +32,7 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Label layoutX="242.0" layoutY="99.0" text="National ID" textFill="#c9c2c2">
+      <Label layoutX="242.0" layoutY="99.0" text="Passport ID" textFill="#c9c2c2">
          <font>
             <Font size="13.0" />
          </font>

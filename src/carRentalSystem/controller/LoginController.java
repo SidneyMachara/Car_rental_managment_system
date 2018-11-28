@@ -50,6 +50,13 @@ public class LoginController extends Scene_Changer implements Initializable {
 
 
     }
+    @FXML
+    public void createTables() throws IOException{
+
+        connect.createTables();
+
+        connect.showAlert("Table creation","created tables");
+    }
 
     @FXML
     public void login_btn() throws IOException, SQLException, NoSuchAlgorithmException {

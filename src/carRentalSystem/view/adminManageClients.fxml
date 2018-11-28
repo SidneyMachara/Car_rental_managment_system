@@ -28,7 +28,7 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="57.0" text="National ID: " />
+            <Label layoutX="31.0" layoutY="57.0" text="Passport No: " />
             <Text fx:id="omang" layoutX="119.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="omang" wrappingWidth="66.00000262260437" />
             <Label layoutX="31.0" layoutY="87.0" text="Email:" />
             <Text fx:id="email" layoutX="119.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="email_text" wrappingWidth="178.13671875" />

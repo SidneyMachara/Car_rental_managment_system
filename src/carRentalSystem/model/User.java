@@ -6,6 +6,7 @@ package carRentalSystem.model;
 public abstract class User {
 
     private String name, email, password,omang;
+    private int id;
 
 
     /**
@@ -16,20 +17,24 @@ public abstract class User {
      * @param password password of the user
      */
     public User(String name, String email,  String password){
+
         this.name = name;
         this.email = email;
         this.password = password;
 
     }
 
-    public User(String name, String email, String omang, String password){
+    public User(int id,String name, String email, String omang, String password){
+        this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
         this.omang = omang;
     }
 
-
+    public int getId() {
+        return id;
+    }
 
     public String getName() {
         return name;

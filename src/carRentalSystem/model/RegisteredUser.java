@@ -12,8 +12,8 @@ public class RegisteredUser extends User{
      * @param email email of the user
      * @param password password of the user
      */
-    public RegisteredUser(String name, String email,String omang, String password) {
-        super(name, email, omang, password);
+    public RegisteredUser(int id,String name, String email,String omang, String password) {
+        super(id, name, email, omang, password);
 //        setAccountType("user");
     }
 
