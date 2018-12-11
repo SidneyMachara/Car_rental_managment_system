@@ -5,8 +5,11 @@ import carRentalSystem.Scene_Changer;
 import carRentalSystem.model.Car;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -47,6 +50,9 @@ public class adminManageCarController extends Scene_Changer implements Initializ
     private Text carName,Price_value,Stauts_value;
 
     @FXML
+    private TextField change_Price;
+
+    @FXML
     private Button bookCar_bnt;
 
     private double price;
@@ -60,7 +66,7 @@ public class adminManageCarController extends Scene_Changer implements Initializ
     private int currentlySelectedCar;
 
     @Override
-    public void initialize(URL location, ResourceBundle resou3333rces) {
+    public void initialize(URL location, ResourceBundle resources) {
         connect = new Database_Connect();
 //        ObservableList<Car> cars = connect.getCarsFromDB();
         cars = connect.getCarsFromDB();
@@ -133,6 +139,27 @@ public class adminManageCarController extends Scene_Changer implements Initializ
         adminCarsListView.setItems(cars);
         System.out.println("delete car ");
     }
+
+    public void  changePrice(){
+
+        Double priceC = Double.parseDouble(change_Price.getText());
+        connect.changePrice(priceC ,currentlySelectedCar);
+
+
+//            update on current screan
+        connect.showAlert("Price Change","CHANGED PRICE");
+        Price_value.setText("Rmb "+ change_Price.getText() + " per day");
+        change_Price.setText("");
+//        changeScene("adminManageCars",mainSceneRight);
+        cars = connect.getCarsFromDB();
+        adminCarsListView.setItems(cars);
+
+
+
+
+
+    }
+
 
 
 }

@@ -51,6 +51,13 @@ public class LoginController extends Scene_Changer implements Initializable {
 
     }
     @FXML
+    public void settings() throws IOException{
+
+        changeScene("settings",loginPane);
+
+
+    }
+    @FXML
     public void createTables() throws IOException{
 
         connect.createTables();
@@ -105,6 +112,8 @@ public class LoginController extends Scene_Changer implements Initializable {
 
 
     }
+
+
 
 
 

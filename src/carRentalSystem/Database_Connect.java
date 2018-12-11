@@ -310,6 +310,13 @@ public class Database_Connect {
         }
     }
 
+    public void changePrice(double nPrice,int carId){
+
+        String sql = "UPDATE car_table SET price = \""+nPrice+"\" WHERE car_id = \""+carId+"\"";
+        insertStmt(sql);
+
+    }
+
     public void deleteCarFromDB(int id){
         String sql = "DELETE FROM car_table WHERE car_id = \""+id+"\"";
         stmt = null;

@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -33,6 +34,8 @@
 
          <Button fx:id="bookCar_bnt" layoutX="105.0" layoutY="239.0" mnemonicParsing="false" onAction="#deleteBTN" prefHeight="43.0" prefWidth="310.0" style="-fx-background-color: red;" text="Delete" textFill="#281a1a" />
          <ImageView fx:id="carImage" fitHeight="150.0" fitWidth="200.0" layoutX="215.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField fx:id="change_Price" layoutX="422.0" layoutY="202.0" prefHeight="25.0" prefWidth="118.0" promptText="New Price" />
+            <Button layoutX="422.0" layoutY="239.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="118.0" text="Change Price" textFill="#2b2929" onAction="#changePrice" />
 
       </children>
       </AnchorPane>
